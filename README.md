@@ -1,13 +1,12 @@
 # Otrium Loyalty Program - Backend Service
 
-This project implements the backend service for Otrium's loyalty program. 
-It's built using NestJS, TypeScript, and AWS serverless technologies. 
+This project implements the backend service for Otrium's loyalty program.
+It's built using NestJS, TypeScript, and AWS serverless technologies.
 The system is designed to be scalable, resilient, and maintainable.
 
-More information: [Architecture](./docs/Architecture.md) | 
-[Database](./docs/Database.md) | 
+More information: [Architecture](./docs/Architecture.md) |
+[Database](./docs/Database.md) |
 [Leadership](./docs/Leadership.md)
-
 
 ## Introduction
 

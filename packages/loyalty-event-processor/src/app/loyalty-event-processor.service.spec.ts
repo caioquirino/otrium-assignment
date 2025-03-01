@@ -1,18 +1,18 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { LoyaltyEventProcessorService } from './loyalty-event-processor.service';
-import { SQSHandler } from './infrastructure/sqs-handler';
-import { SQSEvent, Context } from 'aws-lambda';
+import { Test, TestingModule } from '@nestjs/testing'
+import { LoyaltyEventProcessorService } from './loyalty-event-processor.service'
+import { SQSHandler } from './infrastructure/sqs-handler'
+import { SQSEvent, Context } from 'aws-lambda'
 
 const mockSQSHandler = {
   handle: jest.fn(),
-};
+}
 
 describe('LoyaltyEventProcessorService', () => {
-  let service: LoyaltyEventProcessorService;
-  let sqsHandler: SQSHandler;
+  let service: LoyaltyEventProcessorService
+  let sqsHandler: SQSHandler
 
   beforeEach(async () => {
-    jest.resetAllMocks();
+    jest.resetAllMocks()
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -22,27 +22,27 @@ describe('LoyaltyEventProcessorService', () => {
           useValue: mockSQSHandler,
         },
       ],
-    }).compile();
+    }).compile()
 
-    service = module.get<LoyaltyEventProcessorService>(LoyaltyEventProcessorService);
-    sqsHandler = module.get<SQSHandler>(SQSHandler);
-  });
+    service = module.get<LoyaltyEventProcessorService>(LoyaltyEventProcessorService)
+    sqsHandler = module.get<SQSHandler>(SQSHandler)
+  })
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
+    expect(service).toBeDefined()
+  })
 
   describe('handler', () => {
     it('should call SQSHandler.handle with the event and context', async () => {
-      const mockEvent: SQSEvent = { Records: [] };
-      const mockContext: Context = {} as any;
+      const mockEvent: SQSEvent = { Records: [] }
+      const mockContext: Context = {} as any
 
-      mockSQSHandler.handle.mockResolvedValue(undefined);
+      mockSQSHandler.handle.mockResolvedValue(undefined)
 
-      await service.handler(mockEvent, mockContext);
+      await service.handler(mockEvent, mockContext)
 
-      expect(sqsHandler.handle).toHaveBeenCalledWith(mockEvent, mockContext);
-      expect(sqsHandler.handle).toHaveBeenCalledTimes(1);
-    });
-  });
-});
+      expect(sqsHandler.handle).toHaveBeenCalledWith(mockEvent, mockContext)
+      expect(sqsHandler.handle).toHaveBeenCalledTimes(1)
+    })
+  })
+})

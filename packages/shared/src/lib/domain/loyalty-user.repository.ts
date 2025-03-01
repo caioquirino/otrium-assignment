@@ -85,8 +85,8 @@ export class DynamoDBLoyaltyUserRepository {
     const params = {
       TableName: this.tableName,
       Key: { userId },
-    };
+    }
 
-    await this.dynamoDB.send(new DeleteCommand(params));
+    await this.dynamoDB.send(new DeleteCommand(params))
   }
 }
