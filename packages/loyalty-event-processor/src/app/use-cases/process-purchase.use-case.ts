@@ -6,7 +6,6 @@ import {
   LoyaltyUser,
   LoyaltyTier,
 } from '@otrium-assignment/shared'
-import { v4 as uuidv4 } from 'uuid'
 
 @Injectable()
 export class ProcessPurchaseUseCase {
@@ -24,8 +23,7 @@ export class ProcessPurchaseUseCase {
   }
 
   async execute(event: PurchaseEventDto): Promise<LoyaltyUser> {
-    const { userId, orderId, totalAmount } = event
-    const transactionId = uuidv4()
+    const { userId, orderId, totalAmount, transactionId } = event
 
     //Get User for tier
     const user = await this.loyaltyUserRepository.getUser(userId)

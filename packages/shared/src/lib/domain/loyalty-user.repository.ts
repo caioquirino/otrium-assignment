@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common'
-import { DynamoDBDocumentClient, GetCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb'
+import { DynamoDBDocumentClient, GetCommand, UpdateCommand, DeleteCommand } from '@aws-sdk/lib-dynamodb'
 import { LoyaltyUser, RewardTransaction } from './loyalty-user.model'
-import { UpdateCommandInput } from '@aws-sdk/lib-dynamodb/dist-types/commands/UpdateCommand'
+import { UpdateCommandInput } from '@aws-sdk/lib-dynamodb/dist-types/commands'
 
 @Injectable()
 export class DynamoDBLoyaltyUserRepository {
@@ -79,5 +79,14 @@ export class DynamoDBLoyaltyUserRepository {
       console.error('Error updating points:', error)
       throw error
     }
+  }
+
+  async deleteLoyalty(userId: string): Promise<void> {
+    const params = {
+      TableName: this.tableName,
+      Key: { userId },
+    };
+
+    await this.dynamoDB.send(new DeleteCommand(params));
   }
 }

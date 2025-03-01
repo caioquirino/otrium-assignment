@@ -16,7 +16,7 @@ export class SQSHandler {
     this.processPurchaseUseCase = processPurchaseUseCase
   }
 
-  async handle(event: SQSEvent, _context: Context): Promise<void> {
+  async handle(event: SQSEvent, _context?: Context): Promise<void> {
     for (const record of event.Records) {
       try {
         const purchaseEvent = plainToInstance(PurchaseEventDto, JSON.parse(record.body) as object)
