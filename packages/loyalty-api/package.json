@@ -1,0 +1,73 @@
+{
+  "name": "@otrium-assignment/loyalty-api",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "loyalty-api",
+    "projectType": "application",
+    "sourceRoot": "packages/loyalty-api/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "defaultConfiguration": "production",
+        "options": {
+          "platform": "node",
+          "outputPath": "packages/loyalty-api/dist",
+          "format": [
+            "cjs"
+          ],
+          "bundle": false,
+          "main": "packages/loyalty-api/src/main.ts",
+          "tsConfig": "packages/loyalty-api/tsconfig.app.json",
+          "assets": [
+            "packages/loyalty-api/src/assets"
+          ],
+          "esbuildOptions": {
+            "sourcemap": true,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        },
+        "configurations": {
+          "development": {},
+          "production": {
+            "esbuildOptions": {
+              "sourcemap": false,
+              "outExtension": {
+                ".js": ".js"
+              }
+            }
+          }
+        }
+      },
+      "serve": {
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": [
+          "build"
+        ],
+        "options": {
+          "buildTarget": "loyalty-api:build",
+          "runBuildTargetDependencies": false
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "loyalty-api:build:development"
+          },
+          "production": {
+            "buildTarget": "loyalty-api:build:production"
+          }
+        }
+      },
+      "test": {
+        "options": {
+          "passWithNoTests": true
+        }
+      }
+    }
+  }
+}

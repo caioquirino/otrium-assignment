@@ -1,0 +1,27 @@
+{
+  "name": "@otrium-assignment/loyalty-event-processor-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "loyalty-event-processor-e2e",
+    "projectType": "application",
+    "implicitDependencies": [
+      "loyalty-event-processor"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{workspaceRoot}/coverage/{e2eProjectRoot}"
+        ],
+        "options": {
+          "jestConfig": "packages/loyalty-event-processor-e2e/jest.config.ts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "loyalty-event-processor:build"
+        ]
+      }
+    }
+  }
+}

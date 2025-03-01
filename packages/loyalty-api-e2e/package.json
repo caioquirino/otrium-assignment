@@ -1,0 +1,27 @@
+{
+  "name": "@otrium-assignment/loyalty-api-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "loyalty-api-e2e",
+    "projectType": "application",
+    "implicitDependencies": [
+      "loyalty-api"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{workspaceRoot}/coverage/{e2eProjectRoot}"
+        ],
+        "options": {
+          "jestConfig": "packages/loyalty-api-e2e/jest.config.ts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "loyalty-api:build"
+        ]
+      }
+    }
+  }
+}
