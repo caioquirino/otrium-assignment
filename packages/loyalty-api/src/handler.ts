@@ -1,6 +1,6 @@
 import serverlessExpress from '@codegenie/serverless-express'
 import { NestFactory } from '@nestjs/core'
-import { AppModule } from './app/app.module' // Import your NestJS AppModule
+import { AppModule } from './app/app.module'
 import { ExpressAdapter } from '@nestjs/platform-express'
 import type { Context, APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from 'aws-lambda'
 import express from 'express'
@@ -32,7 +32,5 @@ async function setup(): Promise<
   return serverlessExpressInstance
 }
 
-const handler = async (event: APIGatewayProxyEventV2, context: Context): Promise<APIGatewayProxyResultV2> =>
+export const handler = async (event: APIGatewayProxyEventV2, context: Context): Promise<APIGatewayProxyResultV2> =>
   (await setup())(event, context)
-
-export { handler }

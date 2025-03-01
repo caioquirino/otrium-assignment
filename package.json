@@ -7,7 +7,7 @@
     "test": "nx run-many -t test",
     "api": "nx run loyalty-api:serve",
     "lint:staged": "lint-staged",
-    "lint:all": "nx run-many --all --target=lint",
+    "lint:all": "nx run-many --all --target=lint && nx format:write --all",
     "prepare": "husky"
   },
   "private": true,

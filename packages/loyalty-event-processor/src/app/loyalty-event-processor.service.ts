@@ -1,4 +1,3 @@
-// loyalty-writer/loyalty-service-writer.service.ts
 import { Inject, Injectable } from '@nestjs/common'
 import { SQSHandler } from './infrastructure/sqs-handler'
 import { Context, SQSEvent } from 'aws-lambda'

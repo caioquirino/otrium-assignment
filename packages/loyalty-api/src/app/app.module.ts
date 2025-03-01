@@ -1,10 +1,10 @@
-import { Global, Module } from '@nestjs/common';
-import { GetUserPointsUseCase } from './use-cases/get-user-points.use-case';
-import { OtriumAssignmentSharedModule, SharedModuleOptions } from '@otrium-assignment/shared';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { LoyaltyController } from './presentation/loyalty.controller';
-import { DevtoolsModule } from '@nestjs/devtools-integration';
-import { ConfigurableModuleClass } from '@nestjs/common/cache/cache.module-definition';
+import { Global, Module } from '@nestjs/common'
+import { GetUserPointsUseCase } from './use-cases/get-user-points.use-case'
+import { OtriumAssignmentSharedModule, SharedModuleOptions } from '@otrium-assignment/shared'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { LoyaltyController } from './presentation/loyalty.controller'
+import { DevtoolsModule } from '@nestjs/devtools-integration'
+import { ConfigurableModuleClass } from '@nestjs/common/cache/cache.module-definition'
 
 @Global()
 @Module({
@@ -28,13 +28,11 @@ import { ConfigurableModuleClass } from '@nestjs/common/cache/cache.module-defin
           awsConfig: {
             region: configService.getOrThrow<string>('aws_region'),
           },
-        }
+        },
       }),
       inject: [ConfigService],
     }),
   ],
-  exports: [
-    OtriumAssignmentSharedModule
-  ]
+  exports: [OtriumAssignmentSharedModule],
 })
 export class AppModule extends ConfigurableModuleClass {}
